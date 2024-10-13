@@ -1,0 +1,27 @@
+.footer {
+    position: fixed; /* 화면에 고정 */
+    bottom: 0; /* 화면 하단에 위치 */
+    left: 50%; /* 화면의 중앙 정렬 */
+    transform: translateX(-50%); /* 중앙 정렬 보정 */
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    width: 100%;
+    max-width: 600px;
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+    z-index: 1000; /* 다른 요소보다 위에 표시 */
+  }
+  
+  .navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .navItem img {
+    width: 30px;
+    height: 30px;
+  }
+  
