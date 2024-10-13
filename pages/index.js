@@ -1,9 +1,14 @@
+// pages/index.js
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 export default function Home() {
-    return (
-      <div>
-        <h1>간단한 Next.js 페이지</h1>
-        <p>이 페이지는 Vercel로 배포됩니다.</p>
-      </div>
-    );
-  }
-  
+  const router = useRouter();
+
+  useEffect(() => {
+    // 페이지가 로드될 때 로그인 페이지로 리다이렉트
+    router.push('/login');
+  }, [router]);
+
+  return null; // 화면에 아무것도 렌더링하지 않음
+}
