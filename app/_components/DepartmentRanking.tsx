@@ -29,10 +29,10 @@ const DepartmentRanking: React.FC<DepartmentRankingProps> = ({ rankingData }) =>
             <div className="flex items-center space-x-3">
               {/* <span className="text-lg font-semibold">{index + 1}</span> */}
 
-              <div className="flex flex-col items-center p-2 bg-gray-100 rounded-lg">
+              <div className="flex flex-col items-center p-3 bg-gray-100 rounded-lg">
                 <Image src="svgs/trophy.svg" alt="trophy" width={24} height={24} className="" />
               </div>
-              <div>
+              <div className=''>
                 <p className="font-medium">{dept.name}</p>
                 <p className="text-sm text-gray-500">
                   최고점: {dept.top_student} - {dept.top_student_points}회

@@ -62,6 +62,12 @@ export default function HomePage() {
   if (error) return <div>에러: {error}</div>;
   if (!rankingData) return <div>데이터가 없습니다</div>;
 
+  const items = [
+    { icon: "svgs/lab.svg", text: "출품작", color: "bg-yellow-50", iconColor: "text-yellow-400" },
+    { icon: "svgs/code-dots.svg", text: "오픈랩", color: "bg-green-50", iconColor: "text-green-400" },
+    { icon: "svgs/gift.svg", text: "경품", color: "bg-blue-50", iconColor: "text-blue-400" },
+  ];
+  
   return (
     <div className="p-3 max-w-6xl mx-auto">
       {/* 배너 섹션 */}
@@ -74,19 +80,33 @@ export default function HomePage() {
       </section>
 
       {/* 메뉴 섹션 */}
-      <section className="grid grid-cols-3 gap-4 mb-6">
-        <Link href="/projects" className="flex flex-col items-center p-4 bg-yellow-100 rounded-lg">
+      {/* <section className="grid grid-cols-3 gap-4 mb-2 p-5"> */}
+      <section className="flex justify-center items-center p-5">
+        {/* <Link href="/projects" className="flex flex-col items-center p-4 bg-yellow-100 rounded-lg">
           <Image src="svgs/lab.svg" alt="출품작 소개" width={40} height={40} />
           <span className="mt-2 text-sm">출품작 소개</span>
         </Link>
         <Link href="/openlab" className="flex flex-col items-center p-4 bg-green-100 rounded-lg">
           <Image src="svgs/lab.svg" alt="오픈랩 소개" width={40} height={40} />
-          <span className="mt-2 text-sm">오픈랩 소개</span>
         </Link>
+          <span className="mt-2 text-sm">오픈랩 소개</span>
         <Link href="/awards" className="flex flex-col items-center p-4 bg-blue-100 rounded-lg">
           <Image src="svgs/lab.svg" alt="경품 소개" width={40} height={40} />
           <span className="mt-2 text-sm">경품 소개</span>
-        </Link>
+        </Link> */}
+        <div className="flex space-x-6">
+          {items.map((item, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <div className={`${item.color} rounded-xl p-3 mb-2`}>
+                <div className="w-6 h-6">
+                  {/* 아이콘 컴포넌트나 이미지를 여기에 넣습니다 */}
+                  <img src={item.icon} alt={item.text} className={`w-6 h-6`}  />
+                </div>
+              </div>
+              <span className="text-xs text-center">{item.text}</span>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section>
