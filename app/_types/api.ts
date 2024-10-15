@@ -9,10 +9,24 @@ export interface ApiResponse<T = any> {
 }
 
 
-export interface LoginResponse {
+export interface LoginResponseData {
   access: string;
   refresh: string;
   user: User;
+}
+
+
+export interface DepartmentRankingData {
+  id: number;
+  name: string;
+  total_points: number;
+  top_student: string;
+  top_student_points: number;
+}
+
+export interface HomeResponseData {
+  user_department_id: number;
+  department_rankings: DepartmentRankingData[];
 }
 
 // 타입 가드 함수

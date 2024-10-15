@@ -17,9 +17,14 @@ export const useAutoLogin = () => {
         try {
           // const response = await axiosInstance.get('/accounts/me/');
           // setUser(response.data.user);
-          
           if (pathname === '/login' || pathname === '/signup') {
-            router.push('/');
+            router.push('/home');
+          }
+          else if (pathname === '/') {
+            router.push('/home');
+          }
+          else {
+            router.push(pathname);
           }
         } catch (error) {
           console.error('Auto login failed:', error);
@@ -33,6 +38,7 @@ export const useAutoLogin = () => {
     };
 
     if (!user) {
+      console.log('Auto login...');
       autoLogin();
     }
   }, [user, router, pathname]);
