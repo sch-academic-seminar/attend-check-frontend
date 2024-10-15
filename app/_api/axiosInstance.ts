@@ -1,4 +1,4 @@
-// app/_api/axios.ts
+// app/_api/axiosInstance.ts
 import axios, {
   AxiosResponse,
   AxiosError,
@@ -43,5 +43,6 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
 
 export default axiosInstance;
