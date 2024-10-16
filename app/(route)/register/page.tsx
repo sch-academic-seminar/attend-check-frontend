@@ -2,24 +2,36 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { login } from '../../_api/auth/login';
+import { register } from '../../_api/auth/register';
 import { useRouter } from 'next/navigation';
 
 
 export default function LoginPage() {
-  const [username, setusername] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [selectedDepartmentId, setSelectedDepartmentId] = useState("");
+
   const router = useRouter();
 
-  useEffect(() => {
-    setIsButtonActive(username.trim() !== '' && password.trim() !== '');
-  }, [username, password]);
+  const departments = [
+    { id: 1, name: "사물인터넷학과" },
+    { id: 2, name: "AI빅데이터학과" },
+    { id: 3, name: "컴퓨터소프트웨어공학과" },
+    { id: 4, name: "정보보안학과" },
+    { id: 5, name: "메타버스&게임학과" },
+    // 필요한 다른 학과들을 여기에 추가하세요
+  ];
 
-  const handleLogin = async () => {
+  useEffect(() => {
+    setIsButtonActive(username.trim() !== '' && password.trim() !== '' && name.trim() !== '' && selectedDepartmentId !== '');
+  }, [username, password, name]);
+
+  const handleRegister = async () => {
     try {
-      const response = await login(username, password);
+      const response = await register(username, name, password, selectedDepartmentId);
       console.log('Login successful', response.user);
 
 
@@ -32,10 +44,6 @@ export default function LoginPage() {
     }
   };
 
-  const routeRegisterPage = () => {
-    router.push('/register');
-  }
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -43,8 +51,8 @@ export default function LoginPage() {
   return (
     <div className="lex w-full flex-col justify-center justify-start h-screen p-">
       <div className="w-full max-w-md rounded-lg p-8 mt-24">
-        <h1 className="text-2xl font-bold mb-2">SW 학술제에</h1>
-        <h1 className="text-2xl font-bold mb-8">오신 것을 환영합니다</h1>
+        <h1 className="text-2xl font-bold mb-2">학적 정보를</h1>
+        <h1 className="text-2xl font-bold mb-8">입력해 주세요</h1>
         
         <div className="space-y-6">
           <div>
@@ -52,10 +60,39 @@ export default function LoginPage() {
             <input
               type="text"
               value={username}
-              onChange={(e) => setusername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#293696] focus:border-[#293696]"
               placeholder="학번을 입력해 주세요"
             />
+          </div>
+
+          <div>
+            <h1 className="block text-sm font-medium text-gray-700 mb-2">이름</h1>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#293696] focus:border-[#293696]"
+              placeholder="이름을 입력해 주세요"
+            />
+          </div>
+
+
+          <div>
+            <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-2">학과</label>
+            <select
+              id="department"
+              value={selectedDepartmentId}
+              onChange={(e) => setSelectedDepartmentId(e.target.value)}
+              className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#293696] focus:border-[#293696]"
+            >
+              <option value="">학과를 선택해 주세요</option>
+              {departments.map((dept) => (
+                <option key={dept.id} value={dept.id}>
+                  {dept.name}
+                </option>
+              ))}
+            </select>
           </div>
           
           <div>
@@ -84,7 +121,7 @@ export default function LoginPage() {
           </div>
           
           <button
-            onClick={handleLogin}
+            onClick={handleRegister}
             disabled={!isButtonActive}
             className={`w-full flex justify-center py-3 px-5 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
               isButtonActive 
@@ -92,24 +129,10 @@ export default function LoginPage() {
                 : 'bg-gray-300 cursor-not-allowed'
             }`}
           >
-            <span>로그인</span>
+            <span>가입하기</span>
           </button>
         </div>
-        
-        <div className="mt-6 text-center">
-          <a href="#" className="text-sm text-[#293696] hover:underline">아이디/비밀번호 찾기</a>
-        </div>
-        
-        <div className="mt-8">
-          <button
-            onClick={routeRegisterPage}
-            className="relative w-full flex items-center justify-center border rounded-e rounded-s rounded-lg border-[#293696] text-[#293696] py-3 px-5 hover:bg-blue-100 transition-colors duration-300"
 
-          >
-            <Image src="/svgs/school.svg" alt="Graduation cap" width={20} height={20} className="absolute left-4 h-5 w-5" />
-            <span>학번으로 시작하기</span>
-          </button>
-        </div>
       </div>
     </div>
   );

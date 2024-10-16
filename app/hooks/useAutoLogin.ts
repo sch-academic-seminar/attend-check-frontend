@@ -12,7 +12,7 @@ export const useAutoLogin = () => {
   useEffect(() => {
     const autoLogin = async () => {
       const token = getAccessToken();
-      
+
       if (token && isTokenValid(token)) {
         try {
           const user = await me();
@@ -33,9 +33,11 @@ export const useAutoLogin = () => {
           removeToken();
           router.push('/login');
         }
-      } else if (token) {
+      } else {
         removeToken();
-        router.push('/login');
+        // "Register 제외" 페이지에서는 로그인 페이지로 이동
+        if (pathname !== '/register')
+          router.push('/login');
       }
     };
 
