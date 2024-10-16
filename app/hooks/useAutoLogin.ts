@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { getAccessToken, isTokenValid, removeToken } from '../_utils/authUtils';
 import { useAuth } from '../_context/AuthContext';
-import axiosInstance from '../_api/axiosInstance';
+import { me } from '../_api/auth/me';
 
 export const useAutoLogin = () => {
   const router = useRouter();
@@ -15,7 +15,9 @@ export const useAutoLogin = () => {
       
       if (token && isTokenValid(token)) {
         try {
-          // const response = await axiosInstance.get('/accounts/me/');
+          const user = await me();
+          setUser(user);
+
           // setUser(response.data.user);
           if (pathname === '/login' || pathname === '/signup') {
             router.push('/home');

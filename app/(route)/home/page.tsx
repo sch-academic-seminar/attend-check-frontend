@@ -9,26 +9,26 @@ import { getHomeData } from '../../_api/home/getHomeData';
 import DepartmentRanking from '../../_components/DepartmentRanking';
 
 // 실제 환경에서는 이 데이터를 API에서 가져와야 합니다.
-const mockRankingData: HomeResponseData = {
-  "user_department_id": 1,
-  "department_rankings": [
-    {
-      "id": 1,
-      "name": "사물인터넷학과",
-      "total_points": 1687,
-      "top_student": "박찬종",
-      "top_student_points": 100
-    },
-    {
-      "id": 2,
-      "name": "정보보호학과",
-      "total_points": 1687,
-      "top_student":  "홍길동",
-      "top_student_points": 100
-    },
-    // ... 나머지 데이터
-  ]
-};
+// const mockRankingData: HomeResponseData = {
+//   "user_department_id": 1,
+//   "department_rankings": [
+//     {
+//       "id": 1,
+//       "name": "사물인터넷학과",
+//       "total_points": 1687,
+//       "top_student": "박찬종",
+//       "top_student_points": 100
+//     },
+//     {
+//       "id": 2,
+//       "name": "정보보호학과",
+//       "total_points": 1687,
+//       "top_student":  "홍길동",
+//       "top_student_points": 100
+//     },
+//     // ... 나머지 데이터
+//   ]
+// };
 
 
 export default function HomePage() {
@@ -43,7 +43,6 @@ export default function HomePage() {
         setIsLoading(true);
 
         const data: HomeResponseData = await getHomeData();
-        console.log(data);
         setRankingData(data);
 
       } catch (error) {
@@ -80,20 +79,7 @@ export default function HomePage() {
       </section>
 
       {/* 메뉴 섹션 */}
-      {/* <section className="grid grid-cols-3 gap-4 mb-2 p-5"> */}
       <section className="flex justify-center items-center p-5">
-        {/* <Link href="/projects" className="flex flex-col items-center p-4 bg-yellow-100 rounded-lg">
-          <Image src="svgs/lab.svg" alt="출품작 소개" width={40} height={40} />
-          <span className="mt-2 text-sm">출품작 소개</span>
-        </Link>
-        <Link href="/openlab" className="flex flex-col items-center p-4 bg-green-100 rounded-lg">
-          <Image src="svgs/lab.svg" alt="오픈랩 소개" width={40} height={40} />
-        </Link>
-          <span className="mt-2 text-sm">오픈랩 소개</span>
-        <Link href="/awards" className="flex flex-col items-center p-4 bg-blue-100 rounded-lg">
-          <Image src="svgs/lab.svg" alt="경품 소개" width={40} height={40} />
-          <span className="mt-2 text-sm">경품 소개</span>
-        </Link> */}
         <div className="flex space-x-6">
           {items.map((item, index) => (
             <div key={index} className="flex flex-col items-center">
@@ -111,34 +97,13 @@ export default function HomePage() {
 
       <section>
 
+      {/* 단과대 참여 순위 */}
       <div className="container mx-auto px-4 py-8">
       <DepartmentRanking rankingData={rankingData} />
-      {/* 다른 홈 페이지 컨텐츠 */}
+
     </div>
       </section>
 
-      {/* 단과대 참여 순위 */}
-      {/* <section>
-        <h3 className="text-xl font-bold mb-4">단과대 참여순위</h3>
-        <ul className="space-y-4">
-          {[
-            { name: '사물인터넷학과', point: 150, students: '17학번 박X중 - 30점' },
-            { name: '정보보호학과', point: 100, students: '23학번 박X중 - 30점' },
-            { name: '의료IT학과', point: 100, students: '24학번 박X중 - 30점' },
-            { name: 'AI 빅데이터학과', point: 100, students: '17학번 박X중 - 30점' },
-            { name: '컴퓨터소프트웨어공학과', point: 100, students: '17학번 박X중 - 30점' },
-            { name: '메타버스&게임학과', point: 100, students: '17학번 박X중 - 30점' },
-          ].map((dept, index) => (
-            <li key={index} className={`flex items-center p-4 rounded-lg ${index === 2 ? 'bg-gray-200' : 'bg-white'}`}>
-              <Image src="svgs/trophy.svg" alt="trophy" width={24} height={24} className="mr-4" />
-              <div>
-                <h4 className="font-bold">{dept.name} - {dept.point} point</h4>
-                <p className="text-sm text-gray-600">{dept.students}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section> */}
     </div>
   );
 }

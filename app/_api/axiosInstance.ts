@@ -30,10 +30,10 @@ axiosInstance.interceptors.request.use(
 // Response 인터셉터
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse<ApiResponse>): AxiosResponse<ApiResponse> => {
+    console.log(response.data);
     if (isApiResponse(response.data)) {
       return response;
     }
-    console.log(response.data);
     throw new Error('API 응답 형식이 잘못되었습니다.');
   },
   (error: AxiosError) => {

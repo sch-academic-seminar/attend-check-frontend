@@ -29,6 +29,41 @@ export interface HomeResponseData {
   department_rankings: DepartmentRankingData[];
 }
 
+
+export interface ProgramData {
+  id: number;
+  icon: string;
+  name: string;
+  is_regular: boolean;
+  start_time_formatted: string; // 2024 11-05 00:00
+  end_time_formatted: string; // 2024 11-05 00:00
+  location: string;
+  description: string;
+  point_value: number;
+}
+
+export interface ProgramResponseData {
+  title: string;
+  data: ProgramData[];
+}
+
+
+export interface HistoryData {
+  program_name: string;
+  point_value: number;
+  program_icon: string;
+  point: number;
+  last_point: number;
+  after_point: number;
+  attend_history_formatted: string;
+}
+
+export interface HistoryResponseData {
+  total_point: number;
+  attend_histories: HistoryData[];
+}
+
+
 // 타입 가드 함수
 export function isApiResponse(response: any): response is ApiResponse {
   return (
