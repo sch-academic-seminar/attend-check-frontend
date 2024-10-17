@@ -18,7 +18,7 @@ export default function Header() {
         return 'SW융합대학 학술제';
       case '/schedule':
         return '일정표';
-      case '/participation':
+      case '/history':
         return '참여기록';
       case '/profile':
         return '내정보';

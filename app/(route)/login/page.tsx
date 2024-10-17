@@ -42,7 +42,7 @@ export default function LoginPage() {
 
   return (
     <div className="lex w-full flex-col justify-center justify-start h-screen p-">
-      <div className="w-full max-w-md rounded-lg p-8 mt-24">
+      <div className="w-full max-w-md rounded-lg p-8 mt-10">
         <h1 className="text-2xl font-bold mb-2">SW 학술제에</h1>
         <h1 className="text-2xl font-bold mb-8">오신 것을 환영합니다</h1>
         

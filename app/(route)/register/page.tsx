@@ -50,7 +50,7 @@ export default function LoginPage() {
 
   return (
     <div className="lex w-full flex-col justify-center justify-start h-screen p-">
-      <div className="w-full max-w-md rounded-lg p-8 mt-24">
+      <div className="w-full max-w-md rounded-lg p-8 mt-10">
         <h1 className="text-2xl font-bold mb-2">학적 정보를</h1>
         <h1 className="text-2xl font-bold mb-8">입력해 주세요</h1>
         
