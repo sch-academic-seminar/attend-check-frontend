@@ -1,6 +1,3 @@
-import { fileURLToPath } from 'url';
-import path from 'path';
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 
@@ -13,6 +10,10 @@ const nextConfig = {
     });
 
     return config;
+  },
+  eslint: {
+    // We don't rely on linting errors to break to stop the Neltify build
+    ignoreDuringBuilds: true,
   },
 };
 
