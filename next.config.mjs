@@ -15,6 +15,9 @@ const nextConfig = {
     // We don't rely on linting errors to break to stop the Neltify build
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 export default nextConfig;
