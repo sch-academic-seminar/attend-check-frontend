@@ -7,7 +7,6 @@ import { attendProgram } from '../../_api/history/attend-program';
 export default function AttendHistoryPage() {
   const [showPopup, setShowPopup] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [loginAlert, setLoginAlert] = useState(false); // 로그인 필요 알림 표시
   const [isLoggedIn, setIsLoggedIn] = useState(true); // 로그인 상태 확인
   const router = useRouter();
   const searchParams = useSearchParams(); // 쿼리 스트링 접근
@@ -50,11 +49,6 @@ export default function AttendHistoryPage() {
     }
   };
 
-  const handleLoginConfirm = () => {
-    setLoginAlert(false);
-    router.push('/login');
-  };
-
   // "아니요" 버튼 클릭 시 팝업 닫기
   const handleCancel = () => {
     setShowPopup(false);
@@ -85,20 +79,6 @@ export default function AttendHistoryPage() {
                 아니요
               </button>
             </div>
-          </div>
-        </div>
-      )}
-
-      {loginAlert && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded shadow-lg">
-            <p className="mb-4">로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?</p>
-            <button
-              onClick={handleLoginConfirm}
-              className="py-2 px-4 bg-blue-500 text-white rounded"
-            >
-              확인
-            </button>
           </div>
         </div>
       )}
