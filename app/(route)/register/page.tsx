@@ -38,13 +38,12 @@ export default function LoginPage() {
       setErrorMessage(''); // Clear any previous error messages
 
       // 로그인 성공 후 처리
-      router.push('/');
+      router.push('/home');
 
     } catch (error) {
       console.error('Login failed', error);
       // 에러 처리
-      setErrorMessage(error.response?.data?.message || '로그인에 실패했습니다. 다시 시도해주세요.');
-
+      setErrorMessage(error.response?.data?.data?.password1[0] || error.response?.data?.message || '회원가입에 실패했습니다. 다시 시도해주세요.');
     }
   };
 
@@ -139,7 +138,7 @@ export default function LoginPage() {
                 : 'bg-gray-300 cursor-not-allowed'
             }`}
           >
-            <span>가입하기</span>
+            <span>학술제 참여하기</span>
           </button>
         </div>
 

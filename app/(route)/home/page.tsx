@@ -60,7 +60,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 메뉴 섹션 */}
+    {/* 메뉴 섹션 */}
     <section className="flex justify-center items-center p-5 w-full">
       <MenuSection />
       {/* <div className="flex justify-between w-full max-w-md">

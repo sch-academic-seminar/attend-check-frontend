@@ -25,7 +25,7 @@ export default function LoginPage() {
       console.log('Login successful', response.user);
       setErrorMessage(''); // Clear any previous error messages
       // 로그인 성공 후 처리
-      router.push('/');
+      router.push('/home');
 
     } catch (error) {
       console.error('Login failed', error);
@@ -116,7 +116,7 @@ export default function LoginPage() {
 
           >
             <Image src="/svgs/school.svg" alt="Graduation cap" width={20} height={20} className="absolute left-4 h-5 w-5" />
-            <span>학번으로 시작하기</span>
+            <span>학번으로 회원가입하기</span>
           </button>
         </div>
       </div>
