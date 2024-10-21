@@ -35,9 +35,14 @@ export const useAutoLogin = () => {
         }
       } else {
         removeToken();
-        // "Register 제외" 페이지에서는 로그인 페이지로 이동
-        if (pathname !== '/register')
+        // "Register 제외" 페이지에서는 로그인 페이지로 이동 (attend-history는 팝업 한번 띄워줘야해서 해당 페이지에서 로그인 핸들링)
+        if (pathname !== '/register' && pathname !== '/attend-history'){
           router.push('/login');
+        }
+        else if (pathname === '/attend-history') {
+          alert('로그인이 필요한 페이지입니다.');
+          router.push('/login');
+        }
       }
     };
 

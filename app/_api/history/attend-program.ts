@@ -1,20 +1,14 @@
 
-import axiosInstance from '../axiosInstance'; // 커스텀 axios 인스턴스 사용
+import { ApiResponse } from "../../_types/api";
+import axiosInstance from "../axiosInstance";
 
-interface AttendResponse {
-  message: string;
-}
-
-export const attendProgram = async (programId: number, username: string, password: string): Promise<AttendResponse> => {
+export const attendProgram = async (programId: number): Promise<string> => {
   try {
-    const response = await axiosInstance.post<AttendResponse>(`/programs/${programId}/attend/`, {
-      username,
-      password,
-    });
-
-    return response.data; // 성공 시 응답 데이터 반환
+    const response = await axiosInstance.post<ApiResponse<null>>(`/programs/${programId}/attend/`);
+    // 로컬 스토리지에 토큰 저장
+    return response.data.message;
   } catch (error) {
     console.error('참여 요청 실패:', error);
-    throw error; // 에러를 상위 컴포넌트로 전달
+    throw error;
   }
 };
