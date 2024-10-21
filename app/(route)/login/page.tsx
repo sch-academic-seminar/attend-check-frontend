@@ -11,6 +11,8 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const router = useRouter();
 
   useEffect(() => {
@@ -21,14 +23,14 @@ export default function LoginPage() {
     try {
       const response = await login(username, password);
       console.log('Login successful', response.user);
-
-
+      setErrorMessage(''); // Clear any previous error messages
       // 로그인 성공 후 처리
       router.push('/');
 
     } catch (error) {
       console.error('Login failed', error);
       // 에러 처리
+      setErrorMessage(error.response?.data?.message || '로그인에 실패했습니다. 다시 시도해주세요.');
     }
   };
 
@@ -59,7 +61,7 @@ export default function LoginPage() {
           </div>
           
           <div>
-          <h1 className="block text-sm font-medium text-gray-700 mb-2">비밀번호</h1>
+          <h1 className="block text-sm font-medium text-gray-700 mb-2">핀번호 6자리</h1>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -96,10 +98,17 @@ export default function LoginPage() {
           </button>
         </div>
         
-        <div className="mt-6 text-center">
+        {/* <div className="mt-6 text-center">
           <a href="#" className="text-sm text-[#293696] hover:underline">아이디/비밀번호 찾기</a>
-        </div>
+        </div> */}
         
+        {errorMessage && (
+            <div className="text-red-500 text-sm text-center mt-2">
+              {errorMessage}
+            </div>
+        )}
+
+
         <div className="mt-8">
           <button
             onClick={routeRegisterPage}

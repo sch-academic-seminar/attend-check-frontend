@@ -16,7 +16,8 @@ export const getAccessToken = (): string | null => {
 };
 
 export const removeToken = () => {
-  localStorage.removeItem('jwt_token');
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
 };
 
 export const isTokenValid = (token: string): boolean => {

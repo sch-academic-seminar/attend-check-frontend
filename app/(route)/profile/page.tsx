@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { useAuth } from '../../_context/AuthContext';
 import { useRouter } from 'next/navigation';
-
+import { removeToken } from '../../_utils/authUtils';
 
 export default function ProfilePage() {
 
@@ -14,6 +14,12 @@ export default function ProfilePage() {
   // 사용자가 로그인하지 않은 경우, 로그인 페이지로 리다이렉트
   React.useEffect(() => {
   }, [user, router]);
+
+  const Logout = () => {
+    removeToken();
+    router.push('/login');
+  }
+
 
   return (
     <div className="container mx-auto px-2 py-8">
@@ -82,7 +88,17 @@ export default function ProfilePage() {
             )} */}
           </div>
         </div>
-        
+
+        {/* 로그아웃 버튼 */}
+        <div className="mt-8">
+          <button
+            onClick={Logout}
+            className="relative w-full flex items-center justify-center border rounded-e rounded-s rounded-lg border-[#293696] text-[#293696] py-3 px-5 hover:bg-blue-100 transition-colors duration-300"
+
+          >
+            <span>로그아웃</span>
+          </button>
+        </div>
       </div>
       </div>
     </div>

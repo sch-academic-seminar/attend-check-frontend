@@ -13,6 +13,7 @@ export default function LoginPage() {
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [selectedDepartmentId, setSelectedDepartmentId] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
 
   const router = useRouter();
 
@@ -34,6 +35,7 @@ export default function LoginPage() {
       const response = await register(username, name, password, selectedDepartmentId);
       console.log('Login successful', response.user);
 
+      setErrorMessage(''); // Clear any previous error messages
 
       // 로그인 성공 후 처리
       router.push('/');
@@ -41,6 +43,8 @@ export default function LoginPage() {
     } catch (error) {
       console.error('Login failed', error);
       // 에러 처리
+      setErrorMessage(error.response?.data?.message || '로그인에 실패했습니다. 다시 시도해주세요.');
+
     }
   };
 
@@ -96,14 +100,14 @@ export default function LoginPage() {
           </div>
           
           <div>
-          <h1 className="block text-sm font-medium text-gray-700 mb-2">비밀번호</h1>
+          <h1 className="block text-sm font-medium text-gray-700 mb-2">핀번호 6자리</h1>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#293696] focus:border-[#293696]"
-                placeholder="********"
+                placeholder="******"
               />
               <button
                 type="button"
@@ -120,6 +124,12 @@ export default function LoginPage() {
             </div>
           </div>
           
+          {errorMessage && (
+            <div className="text-red-500 text-sm text-center mt-2">
+              {errorMessage}
+            </div>
+          )}
+
           <button
             onClick={handleRegister}
             disabled={!isButtonActive}
