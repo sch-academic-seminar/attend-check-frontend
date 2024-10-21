@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // app/_api/axios.ts
+=======
+// app/_api/axiosInstance.ts
+>>>>>>> 28e2b78 (Initial commit or update project)
 import axios, {
   AxiosResponse,
   AxiosError,
@@ -30,10 +34,17 @@ axiosInstance.interceptors.request.use(
 // Response 인터셉터
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse<ApiResponse>): AxiosResponse<ApiResponse> => {
+<<<<<<< HEAD
     if (isApiResponse(response.data)) {
       return response;
     }
     console.log(response.data);
+=======
+    console.log(response.data);
+    if (isApiResponse(response.data)) {
+      return response;
+    }
+>>>>>>> 28e2b78 (Initial commit or update project)
     throw new Error('API 응답 형식이 잘못되었습니다.');
   },
   (error: AxiosError) => {
@@ -44,4 +55,9 @@ axiosInstance.interceptors.response.use(
   }
 );
 
+<<<<<<< HEAD
 export default axiosInstance;
+=======
+
+export default axiosInstance;
+>>>>>>> 28e2b78 (Initial commit or update project)

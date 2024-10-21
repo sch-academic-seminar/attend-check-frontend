@@ -1,6 +1,10 @@
 import { ReactNode } from 'react'
 import { Inter } from 'next/font/google'
+<<<<<<< HEAD
 
+=======
+import { Suspense } from 'react';
+>>>>>>> 28e2b78 (Initial commit or update project)
 
 import { AuthProvider } from './_context/AuthContext';
 import { AutoLoginWrapper } from './_components/Button/AutoLoginWrapper';
@@ -25,7 +29,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <AuthProvider>
             <AutoLoginWrapper>
             <Header />
+<<<<<<< HEAD
               {children}
+=======
+            <Suspense fallback={<div>Loading...</div>}>
+                {children}
+            </Suspense>
+>>>>>>> 28e2b78 (Initial commit or update project)
             <NavigationTabBar />
             </AutoLoginWrapper>
           </AuthProvider>

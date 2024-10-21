@@ -9,12 +9,68 @@ export interface ApiResponse<T = any> {
 }
 
 
+<<<<<<< HEAD
 export interface LoginResponse {
+=======
+export interface LoginResponseData {
+>>>>>>> 28e2b78 (Initial commit or update project)
   access: string;
   refresh: string;
   user: User;
 }
 
+<<<<<<< HEAD
+=======
+
+export interface DepartmentRankingData {
+  id: number;
+  name: string;
+  total_points: number;
+  top_student: string;
+  top_student_points: number;
+}
+
+export interface HomeResponseData {
+  user_department_id: number;
+  department_rankings: DepartmentRankingData[];
+}
+
+
+export interface ProgramData {
+  id: number;
+  icon: string;
+  name: string;
+  is_regular: boolean;
+  start_time_formatted: string; // 2024 11-05 00:00
+  end_time_formatted: string; // 2024 11-05 00:00
+  location: string;
+  description: string;
+  point_value: number;
+}
+
+export interface ProgramResponseData {
+  title: string;
+  data: ProgramData[];
+}
+
+
+export interface HistoryData {
+  program_name: string;
+  point_value: number;
+  program_icon: string;
+  point: number;
+  last_point: number;
+  after_point: number;
+  attend_history_formatted: string;
+}
+
+export interface HistoryResponseData {
+  total_point: number;
+  attend_histories: HistoryData[];
+}
+
+
+>>>>>>> 28e2b78 (Initial commit or update project)
 // 타입 가드 함수
 export function isApiResponse(response: any): response is ApiResponse {
   return (

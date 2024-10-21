@@ -21,7 +21,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   );
 };
 
+<<<<<<< HEAD
 export const useAuth = () => {
+=======
+export const useAuth : any = () => {
+>>>>>>> 28e2b78 (Initial commit or update project)
   const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider');
